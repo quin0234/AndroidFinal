@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/buildingPic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+
+        <TextView
+            android:id="@+id/buildingName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="BUILDING NAME"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/buildingDesEN"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_weight="2"
+                android:text="DESCRIPTION"
+                android:padding="5dp"/>
+
+            <fragment
+                android:id="@+id/mapView"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_weight="2"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/bldingopentime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="OpeningTimes"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="14dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:layout_margin="10dp">
+
+            <Button
+                android:id="@+id/editBtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:text="Edit"
+                android:drawableLeft="@drawable/ic_edit_black_24dp"
+                />
+
+            <Button
+                android:id="@+id/deleteBtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:text="Delete"
+                android:drawableLeft="@drawable/ic_delete_black_24dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
