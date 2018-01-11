@@ -11,16 +11,16 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imgFromPhone"
+        android:id="@+id/editImgFromFone"
         android:layout_width="match_parent"
-        android:layout_height="385dp"
+        android:layout_height="314dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
         android:adjustViewBounds="true"
-        android:background="@android:color/holo_red_dark" />
+        android:background="@color/colorAccent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/editingtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -31,12 +31,37 @@
         android:textColor="@android:color/background_light"
         android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/getEditedPic"
-        android:layout_height="50dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:text="Capture Building" />
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:layout_margin="10dp">
+
+        <Button
+            android:id="@+id/EditPicPhone"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:text="Photo"
+            android:layout_margin="5dp"
+            android:background="@color/colorAccent"
+            android:textColor="#ffffff"
+            />
+
+        <Button
+            android:id="@+id/EditPicGallery"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:text="Gallery"
+            android:layout_margin="5dp"
+            android:background="@color/colorAccent"
+            android:textColor="#ffffff"
+            />
+
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/editTextAddress"
@@ -51,7 +76,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Description"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
+        android:lines="10"
+        android:scrollbars="vertical"
         android:padding="10dp"/>
 
     <Switch
@@ -70,14 +97,15 @@
         android:hint="Saturday Opening (YYYY-MM-DD hh:mm)"
         android:inputType="textPersonName"
         android:padding="10dp" />
+
     <EditText
         android:id="@+id/satClose"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Saturday Closing (YYYY-MM-DD hh:mm)"
-        android:inputType="textPersonName"
-        android:padding="10dp"/>
+        android:inputType="textMultiLine|textPersonName"
+        android:padding="10dp" />
     <EditText
         android:id="@+id/sunOpen"
         android:layout_width="350dp"
@@ -95,30 +123,42 @@
         android:inputType="textPersonName"
         android:padding="10dp"/>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/editBtnSave"
+        android:layout_height="50dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:paddingTop="20dp"
-        android:layout_margin="10dp">
+        android:layout_weight="1"
+        android:text="Save"
+        android:background="@color/colorAccent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_margin="10dp"
+        android:textColor="#ffffff" />
 
-        <Button
-            android:id="@+id/editBtnSave"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="2"
-            android:text="Save"
-            />
+    <Button
+        android:id="@+id/editBtnSavePic"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:text="Save with Photo"
+        android:background="@color/colorAccent"
+        android:drawableLeft="@drawable/ic_camera_enhance_white_24px"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_margin="10dp"
+        android:textColor="#ffffff" />
 
-        <Button
-            android:id="@+id/editBtnCancel"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="2"
-            android:text="Cancel"
-            />
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/editBtnCancel"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:text="Canel"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_margin="10dp"
+        android:textColor="#ffffff" />
 
 
 </LinearLayout>

@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.add_new_blding.*
 import kotlinx.android.synthetic.main.edit_building.*
 import okhttp3.*
 import org.jetbrains.anko.toast
-import quin0234.algonquincollege.com.androidfinal.R.id.imgFromPhone
+import quin0234.algonquincollege.com.androidfinal.R.id.imgFromFone
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException

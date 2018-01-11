@@ -10,7 +10,8 @@ class Building ( val buildingId : Int, val nameEN : String,
                  val image: String, val longitude : Float,
                  val latitude : Float , val imageDescriptionEN : String,
                  val saturdayStart : String, val saturdayClose : String,
-                 val descriptionEN: String)
+                 val descriptionEN: String, val addressEN: String)
+
 
 
 /*

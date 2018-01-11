@@ -50,9 +50,10 @@ class BuildingDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         val editBuildingBtn: Button = findViewById(R.id.editBtn)
 
         editBuildingBtn.setOnClickListener {
-            val intent = Intent(this@BuildingDetailActivity, EditBldingActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
+           val intent = Intent (editBuildingBtn.context, EditBldingActivity::class.java)
+            intent.putExtra("object", Gson().toJson(bldInfoObject))
+            editBuildingBtn.context.startActivity(intent)
+
         }
 
 
