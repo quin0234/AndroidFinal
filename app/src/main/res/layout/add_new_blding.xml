@@ -31,39 +31,18 @@
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/AddPicPhone"
+            android:layout_height="50dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:layout_margin="10dp">
-
-            <Button
-                android:id="@+id/AddPicPhone"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="2"
-                android:text="Photo"
-                android:layout_margin="5dp"
-                android:background="@color/colorAccent"
-                android:textColor="#ffffff"
-                />
-
-            <Button
-                android:id="@+id/AddPicGallery"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="2"
-                android:text="Gallery"
-                android:layout_margin="5dp"
-                android:background="@color/colorAccent"
-                android:textColor="#ffffff"
-                />
-
-        </LinearLayout>
-
-
-
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_camera_enhance_white_24px"
+            android:background="@color/colorAccent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_margin="10dp"
+            android:text="Add Photo"
+            android:textColor="#ffffff" />
 
 
         <EditText

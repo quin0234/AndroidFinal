@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -34,6 +35,7 @@ class AddNewBuilding: AppCompatActivity(){
 
     val MY_REQUEST_CAMERA = 10
     val MY_REQUEST_GALLERY = 12
+    lateinit var imageFilePath: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,19 +50,17 @@ class AddNewBuilding: AppCompatActivity(){
         val takePicBtn: Button = findViewById(R.id.AddPicPhone)
 
         takePicBtn.setOnClickListener{
-            val callCameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            if(callCameraIntent.resolveActivity(packageManager) !=null) {
-                startActivityForResult(callCameraIntent, MY_REQUEST_CAMERA)
-            }
-        }
-
-        val getPicBtn: Button = findViewById(R.id.AddPicGallery)
-
-        getPicBtn.setOnClickListener{
-            val callGalleryIntent = Intent(Intent.ACTION_GET_CONTENT)
-            callGalleryIntent.type = "image/*"
-            if(callGalleryIntent.resolveActivity(packageManager) !=null) {
-                startActivityForResult(callGalleryIntent, MY_REQUEST_GALLERY)
+            try {
+                val imageFile = createImageFile()
+                val callCameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                if(callCameraIntent.resolveActivity(packageManager) != null) {
+                    val authorities = packageName + ".fileprovider"
+                    val imageUri = FileProvider.getUriForFile(this, authorities, imageFile)
+                    callCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+                    startActivityForResult(callCameraIntent, MY_REQUEST_CAMERA)
+                }
+            } catch (e: IOException) {
+                Toast.makeText(this, "Could not create file!", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -117,13 +117,65 @@ class AddNewBuilding: AppCompatActivity(){
 
     }
 
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        when(requestCode) {
+            MY_REQUEST_CAMERA -> {
+/*                if(resultCode == Activity.RESULT_OK && data != null) {
+                    photoImageView.setImageBitmap(data.extras.get("data") as Bitmap)
+                }*/
+                if (resultCode == Activity.RESULT_OK) {
+                    imgFromFone.setImageBitmap(setScaledBitmap())
+                }
+            }
+
+            else -> {
+                Toast.makeText(this, "Unrecognized request code", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    @Throws(IOException::class)
+    fun createImageFile(): File {
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val imageFileName: String = "JPEG_" + timeStamp + "_"
+        val storageDir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        if(!storageDir.exists()) storageDir.mkdirs()
+        val imageFile = File.createTempFile(imageFileName, ".jpg", storageDir)
+        imageFilePath = imageFile.absolutePath
+        return imageFile
+    }
+
+    fun setScaledBitmap(): Bitmap {
+        val imageViewWidth = imgFromFone.width
+        val imageViewHeight = imgFromFone.height
+
+        val bmOptions = BitmapFactory.Options()
+        bmOptions.inJustDecodeBounds = true
+        BitmapFactory.decodeFile(imageFilePath, bmOptions)
+        val bitmapWidth = bmOptions.outWidth
+        val bitmapHeight = bmOptions.outHeight
+
+        val scaleFactor = Math.min(bitmapWidth/imageViewWidth, bitmapHeight/imageViewHeight)
+
+        bmOptions.inJustDecodeBounds = false
+        bmOptions.inSampleSize = scaleFactor
+
+        return BitmapFactory.decodeFile(imageFilePath, bmOptions)
+
+    }
+
     fun uploadBldingPic(newBldingName: String = "", newBldingAddress: String = "") {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
         val url = "https://doors-open-ottawa.mybluemix.net/buildings/form"
+        println("image" + imageFilePath)
+        val bitmap = BitmapFactory.decodeStream(URL("file:///" + imageFilePath).content as InputStream)
 
-        val bitmap = BitmapFactory.decodeStream(URL("https://statgisesi.files.wordpress.com/2013/10/the-valley-5.jpg").content as InputStream)
         val baos = ByteArrayOutputStream()
 
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos)
@@ -134,6 +186,7 @@ class AddNewBuilding: AppCompatActivity(){
                 .addFormDataPart("nameEN", newBldingName)
                 .addFormDataPart("addressEN", newBldingAddress)
                 .addFormDataPart("image", "building_pic.jpg",
+
                         RequestBody.create(MEDIA_TYPE_JPEG, baos.toByteArray()))
                 .build()
 
@@ -147,7 +200,7 @@ class AddNewBuilding: AppCompatActivity(){
         client.newCall(request).enqueue(object : Callback {
             override fun onResponse(call: Call?, response: Response?) {
                 runOnUiThread {
-                   toast(response.toString())
+                    toast(response.toString())
 
                 }
             }
@@ -158,31 +211,6 @@ class AddNewBuilding: AppCompatActivity(){
                 }
             }
         })
-    }
-
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        when(requestCode) {
-            MY_REQUEST_CAMERA -> {
-                if(resultCode == Activity.RESULT_OK && data != null) {
-                    imgFromFone.setImageBitmap(data.extras.get("data")as Bitmap)
-
-                }
-            }
-            MY_REQUEST_GALLERY -> {
-                if (resultCode == Activity.RESULT_OK && data != null) {
-                    imgFromFone.setImageBitmap(data.extras.get("data") as Bitmap)
-
-                }
-            }
-            else -> {
-                Toast.makeText(this, "Unrecognised Request Code", Toast.LENGTH_SHORT).show()
-
-            }
-        }
     }
 
 

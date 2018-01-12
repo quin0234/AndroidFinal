@@ -117,12 +117,5 @@ class EditBldingActivity : AppCompatActivity() {
         }
 
 
-        val getPicBtn: Button = findViewById(R.id.editBtnSavePic)
-
-        getPicBtn.setOnClickListener{
-            val intent = Intent(this@EditBldingActivity, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
-        }
     }
 }
