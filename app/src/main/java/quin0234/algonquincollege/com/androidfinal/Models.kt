@@ -5,12 +5,22 @@ package quin0234.algonquincollege.com.androidfinal
  */
 class buildingFeed(val buildings: Array<Building>)
 
-class Building ( val buildingId : Int, val nameEN : String,
-                 val categoryFR : String, val categoryId : Int,
-                 val image: String, val longitude : Float,
-                 val latitude : Float , val imageDescriptionEN : String,
-                 val saturdayStart : String, val saturdayClose : String,
-                 val descriptionEN: String, val addressEN: String)
+class Building ( val buildingId : Int,
+                 val nameEN : String,
+                 val categoryFR : String,
+                 val categoryId : Int,
+                 val image: String,
+                 val longitude : Float,
+                 val isNewBuilding: Boolean,
+                 val latitude : Float ,
+                 val imageDescriptionEN : String,
+                 val saturdayStart : String,
+                 val saturdayClose : String,
+                 val sundayStart: String,
+                 val sundayClose: String,
+                 val descriptionEN: String,
+                 val addressEN: String
+                 )
 
 
 
