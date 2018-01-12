@@ -23,6 +23,8 @@ import java.io.IOException
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,7 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         recyclerview_main.layoutManager = LinearLayoutManager(this)
 
-        fetchJson()
+        fetchJson(0)
     }
 
     override fun onBackPressed() {
@@ -73,23 +75,70 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
-                // Handle the camera action
+            R.id.sortaz -> {
+                fetchJson(12)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
             }
-            R.id.nav_gallery -> {
-
+            R.id.sortza -> {
+                fetchJson(13)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
             }
-            R.id.nav_slideshow -> {
-
+            R.id.regBldings -> {
+                fetchJson(1)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
             }
-            R.id.nav_manage -> {
-
+            R.id.embBldings -> {
+                fetchJson(2)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
             }
-            R.id.nav_share -> {
-
+            R.id.govBldings -> {
+                fetchJson(3)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
             }
-            R.id.nav_send -> {
-
+            R.id.funBldings -> {
+                fetchJson(4)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
+            }
+            R.id.artBlgins -> {
+                fetchJson(5)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
+            }
+            R.id.eduBldings -> {
+                fetchJson(6)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
+            }
+            R.id.sportBldings -> {
+                fetchJson(7)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
+            }
+            R.id.combldings -> {
+                fetchJson(8)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
+            }
+            R.id.busBldings -> {
+                fetchJson(9)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
+            }
+            R.id.historyBldings -> {
+                fetchJson(10)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
+            }
+            R.id.otherBldings -> {
+                fetchJson(11)
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
             }
         }
 
@@ -97,22 +146,54 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    fun fetchJson() {
+    fun fetchJson(event: Int) {
         println("Fetching JSON")
 
-        val url = "https://doors-open-ottawa.mybluemix.net/buildings"
+        var url = "https://doors-open-ottawa.mybluemix.net/buildings"
+
+        if (event == 0) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings"
+        } else if (event == 1) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings?categoryId=[0]"
+        } else if (event == 2) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings?categoryId=[1]"
+        } else if (event == 3) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings?categoryId=[2]"
+        } else if (event == 4) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings?categoryId=[3]"
+        } else if (event == 5) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings?categoryId=[4]"
+        } else if (event == 6) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings?categoryId=[5]"
+        } else if (event == 7) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings?categoryId=[6]"
+        } else if (event == 8) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings?categoryId=[7]"
+        } else if (event == 9) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings?categoryId=[8]"
+        } else if (event == 10) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings?categoryId=[9]"
+        } else if (event == 11) {
+            url = "https://doors-open-ottawa.mybluemix.net/buildings?categoryId=[10]"
+        }
+
         val request = Request.Builder().url(url).build()
         val client = OkHttpClient()
 
         client.newCall(request).enqueue(object: Callback {
-
             override fun onResponse(call: okhttp3.Call?, response: Response?) {
                 val body = response?.body()?.string()
-
                 val gson = Gson()
-
                 val buildingFeed = gson.fromJson(body, Array<Building>::class.java)
 
+                if (event == 12) {
+                    buildingFeed.sortWith(compareBy(String.CASE_INSENSITIVE_ORDER, { it.nameEN }))
+
+                } else if (event == 13) {
+                    buildingFeed.sortWith(compareBy(String.CASE_INSENSITIVE_ORDER, { it.nameEN }))
+                    buildingFeed.reverse()
+
+                }
 
                 runOnUiThread {
                     recyclerview_main.adapter = MainAdapter(buildingFeed)

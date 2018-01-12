@@ -5,57 +5,57 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/sortaz"
+            android:icon="@drawable/ic_sort_black_24px"
             android:title="Sort A-Z" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Sort Z-A" />
-
+            android:id="@+id/sortza"
+            android:icon="@drawable/ic_sort_black_24px"
+            android:title="Sort Z-A"
+            android:visible="true" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/regBldings"
+           android:icon="@drawable/ic_flash_on_black_24px"
             android:title="Religious Buildings" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/embBldings"
+            android:icon="@drawable/ic_public_black_24dp"
             android:title="Embassies" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/govBldings"
+            android:icon="@drawable/ic_poll_black_24px"
             android:title="Government Buidings" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/funBldings"
+            android:icon="@drawable/ic_location_city_black_24px"
             android:title="Functional Buildings" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Galleries & Theatres" />
+            android:id="@+id/artBlgins"
+            android:icon="@drawable/ic_insert_photo_black_24px"
+            android:title="Galleries and Theatres" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/eduBldings"
+            android:icon="@drawable/ic_school_black_24dp"
             android:title="Academic Institutions" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/sportBldings"
+            android:icon="@drawable/ic_fitness_center_black_24dp"
             android:title="Sports and Leisure Buildings" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/combldings"
+            android:icon="@drawable/ic_people_black_24dp"
             android:title="Community and Care Centres" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/busBldings"
+            android:icon="@drawable/ic_business_black_24dp"
             android:title="Business and/or Foundations" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/historyBldings"
+            android:icon="@drawable/ic_nature_people_black_24px"
             android:title="Museuems, Archives and Historic Sites" />
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/otherBldings"
+            android:icon="@drawable/ic_low_priority_black_24px"
             android:title="Other" />
 
     </group>
