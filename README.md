@@ -5,7 +5,7 @@ To implement, test and deploy an Android app for the Doors Open Ottawa (Links to
 Links to an external site. event with the City of Ottawa.
 To interact with a RESTful API server: GET, POST, PUT, and DELETE.
 
-##Essential Requirements
+## Essential Requirements
 
 1. Automatically Fetch Building Data When App Launches
  ###### STATUS: COMPLETE
@@ -48,7 +48,7 @@ To interact with a RESTful API server: GET, POST, PUT, and DELETE.
 13. Color Scheme
 ###### STATUS: COMPLETE
 
-##Desireable Requirements
+## Desireable Requirements
 
 1. CardView
 ###### STATUS: NOT COMPLETED
