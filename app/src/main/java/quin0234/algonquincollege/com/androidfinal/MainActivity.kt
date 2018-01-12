@@ -23,6 +23,7 @@ import java.io.IOException
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    val ABOUT_DIALOG: String = "About Dialog";
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +68,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_settings -> return true
+            R.id.action_settings -> { val newFragment = AboutDialogFragment()
+                newFragment.show(fragmentManager, ABOUT_DIALOG)
+                return true}
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -75,6 +78,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
+
             R.id.sortaz -> {
                 fetchJson(12)
                 drawer_layout.closeDrawer(GravityCompat.START)
